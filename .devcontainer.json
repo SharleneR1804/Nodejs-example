@@ -61,6 +61,7 @@
 		  "**/.git/subtree-cache/**": true,
 		  "**/node_modules/*/**": true
 		},
+		"git.enabled": true,
 		"git.autofetch": true,
 		"gitdoc.autoPull": "off",
 		"gitdoc.commitMessageFormat": "DD, TTT",
