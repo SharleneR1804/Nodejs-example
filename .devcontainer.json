@@ -3,7 +3,7 @@
 
 {
     "name": "Node.js & Express Container",
-	"image": "ubuntu:20.04",
+	"image": "node:22",
     //"dockerFile": "dockerfile",
     //"context": ".",
 
@@ -45,6 +45,8 @@
 		"files.watcherExclude": {
 		  "**/node_modules/*/**": true
 		},
+		"git.enabled": true,
+    	//"git.path": "/usr/bin/git", // Ensure this path is correct
 		"git.autofetch": true, //automatically fetch github updates
 		"gitdoc.autoPull": "off",
 		"gitdoc.commitMessageFormat": "DD, TTT", //add date and time to commit
