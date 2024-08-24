@@ -35,26 +35,34 @@
 	"runArgs": ["--platform=linux/amd64" ],
 
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "root", //provides superuser privileges, needs to be changed after a certain point in development (only when admin priveleges may be required)
+	"remoteUser": "root", //provides superuser privileges, needs to be changed after a certain point in development (use only when admin priveleges may be required)
 
 	// Default settings
 	"settings": {
-		"extensions.ignoreRecommendations": false, //vs code recommendations enabled
-		"files.autoSave": "afterDelay", //autosave when idle
+		"extension-uninstaller.uninstall": [
+		  "github.copilot",
+		  "github.copilot-nightly",
+		  "tabnine.tabnine-vscode",
+		  "timkmecl.chatgpt"
+		],
+		"extensions.ignoreRecommendations": true,
+		"files.autoSave": "afterDelay",
+		// "files.exclude": {
+		//   "**/.*": true
+		// },
 		"files.trimTrailingWhitespace": true,
 		"files.watcherExclude": {
+		  "**/.git/objects/**": true,
+		  "**/.git/subtree-cache/**": true,
 		  "**/node_modules/*/**": true
 		},
-		"git.enabled": true,
-    	//"git.path": "/usr/bin/git", // Ensure this path is correct
-		"git.autofetch": true, //automatically fetch github updates
+		"git.autofetch": true,
 		"gitdoc.autoPull": "off",
-		"gitdoc.commitMessageFormat": "DD, TTT", //add date and time to commit
+		"gitdoc.commitMessageFormat": "DD, TTT",
 		"gitdoc.commitValidationLevel": "none",
 		"gitdoc.enabled": false,
 		"gitdoc.pullOnOpen": false,
-		"terminal.integrated.defaultProfile.linux": "bash",
-		"terminal.integrated.shell.linux": "/bin/bash"
+		"terminal.integrated.defaultProfile.linux": "bash"
 	}
 
 }
