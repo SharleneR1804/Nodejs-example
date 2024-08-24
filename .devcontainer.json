@@ -1,0 +1,58 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+
+{
+    "name": "Node.js & Express Container",
+	"image": "ubuntu:20.04",
+    //"dockerFile": "dockerfile",
+    //"context": ".",
+
+    // Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8080],
+
+    // Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "npm install", //to install dependencies
+
+    // Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"html-validate.vscode-html-validate",
+				"dbaeumer.vscode-eslint",
+				"vsls-contrib.gitdoc",
+				"ms-vsliveshare.vsliveshare-pack",
+				"tonybaloney.vscode-pets",
+				"unjinjang.rest-api-client",
+                "esbenp.prettier-vscode"
+			]
+		}
+	},
+
+	// Force AMD64 architecture
+	"runArgs": ["--platform=linux/amd64" ],
+
+    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "root", //provides superuser privileges, needs to be changed after a certain point in development (only when admin priveleges may be required)
+
+	// Default settings
+	"settings": {
+		"extensions.ignoreRecommendations": false, //vs code recommendations enabled
+		"files.autoSave": "afterDelay", //autosave when idle
+		"files.trimTrailingWhitespace": true,
+		"files.watcherExclude": {
+		  "**/node_modules/*/**": true
+		},
+		"git.autofetch": true, //automatically fetch github updates
+		"gitdoc.autoPull": "off",
+		"gitdoc.commitMessageFormat": "DD, TTT", //add date and time to commit
+		"gitdoc.commitValidationLevel": "none",
+		"gitdoc.enabled": false,
+		"gitdoc.pullOnOpen": false,
+		"terminal.integrated.defaultProfile.linux": "bash",
+		"terminal.integrated.shell.linux": "/bin/bash"
+	}
+
+}
