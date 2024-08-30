@@ -1,23 +1,33 @@
-# Use the official Node.js image as a base
-FROM node:22-alpine
+# Use an official Ubuntu as a base image
+FROM ubuntu:22.04
 
-# Create and set the working directory inside the container
+# Install Node.js, MySQL, and other dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    lsb-release \
+    build-essential \
+    default-mysql-server \
+    default-mysql-client \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js (example with Node.js 20)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
+# Set the working directory
 WORKDIR /app
 
-# Install system dependencies (if any)
-RUN apk add --no-cache git curl
-
-# Copy package.json and package-lock.json to the container
+# Copy package.json and install dependencies
 COPY package*.json ./
+RUN npm install
 
-# Install Node.js dependencies
-RUN npm install --production
-
-# Copy the rest of your app's source code to the container
-COPY . .
+# Copy the rest of the application code
+COPY . /app
 
 # Expose the port your app runs on
 EXPOSE 8080
 
-# Command to start your app
+# Start the application
 CMD ["npm", "start"]

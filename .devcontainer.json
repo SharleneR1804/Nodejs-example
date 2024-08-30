@@ -1,22 +1,21 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
-
 {
-    "name": "Node.js & Express Container",
-	//"image": "node:22",
-    "dockerFile": "dockerfile",
-    "context": ".",
+	"name": "InfluxDB PG04",
+	//"image": "ghcr.io/uadelaide/wdc23:latest",
+	"dockerFile": "dockerfile",
+	"context": ".",
 
-    // Features to add to the dev container. More info: https://containers.dev/features.
+	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [8080],
+	"forwardPorts": [8080, 3306],
 
-    // Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm install", //to install dependencies
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
 
-    // Configure tool-specific properties.
+	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -25,22 +24,16 @@
 				"vsls-contrib.gitdoc",
 				"ms-vsliveshare.vsliveshare-pack",
 				"tonybaloney.vscode-pets",
-				"unjinjang.rest-api-client",
-                "esbenp.prettier-vscode"
+				"unjinjang.rest-api-client"
 			]
 		}
 	},
 
 	// Force AMD64 architecture
-	"runArgs": ["--platform=linux/amd64" ],
+	//"runArgs": ["--platform=linux/amd64" ],
 
-	//mount the Docker socket from the host machine into the container
-	"mounts": [
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-  	],
-
-    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "root", //provides superuser privileges, needs to be changed after a certain point in development (use only when admin priveleges may be required)
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "root",
 
 	// Default settings
 	"settings": {
@@ -52,16 +45,15 @@
 		],
 		"extensions.ignoreRecommendations": true,
 		"files.autoSave": "afterDelay",
-		// "files.exclude": {
-		//   "**/.*": true
-		// },
+		"files.exclude": {
+		  "**/.*": true
+		},
 		"files.trimTrailingWhitespace": true,
 		"files.watcherExclude": {
 		  "**/.git/objects/**": true,
 		  "**/.git/subtree-cache/**": true,
 		  "**/node_modules/*/**": true
 		},
-		"git.enabled": true,
 		"git.autofetch": true,
 		"gitdoc.autoPull": "off",
 		"gitdoc.commitMessageFormat": "DD, TTT",
